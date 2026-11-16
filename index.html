@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kompetansekompasset – Steg 2: Mål</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#F5F6F8;font-family:'Inter',system-ui,sans-serif;color:#1C2128}
+.wrap{max-width:880px;margin:0 auto;padding:32px 24px 80px;display:flex;flex-direction:column;gap:32px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid #DDE1E6}
+.brand{margin:0;font-size:17px;font-weight:600}
+.steps{list-style:none;margin:0;padding:0;display:flex;gap:20px;font-size:14px;color:#5B6470}
+.steps .on{color:#2F5D8A;font-weight:600;border-bottom:2px solid #2F5D8A;padding-bottom:4px}
+.stack{display:flex;flex-direction:column;gap:24px}
+h1{margin:0;font-size:36px;line-height:44px;font-weight:600;letter-spacing:-.02em}
+.lead{margin:8px 0 0;font-size:18px;line-height:28px;color:#5B6470;max-width:680px}
+.q{background:#fff;border:1px solid #DDE1E6;border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.q h2{margin:0;font-size:18px;line-height:26px;font-weight:600}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+button,.btn{font-family:inherit;font-size:16px;color:#1C2128;min-height:44px;padding:10px 18px;border:1px solid #C9CED4;border-radius:6px;background:#fff;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.opt[aria-pressed="true"]{border:2px solid #2F5D8A;background:#E6EEF6}
+.primary{background:#2F5D8A;color:#fff;border:0;font-weight:600}
+.primary:disabled{background:#9AA7B4;cursor:not-allowed}
+.outline{color:#2F5D8A;border:2px solid #2F5D8A;font-weight:600}
+button:focus-visible,.btn:focus-visible{outline:3px solid #2F5D8A;outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.muted{margin:0;font-size:15px;line-height:23px;color:#5B6470}
+.surprise{justify-content:space-between;border-top:1px solid #DDE1E6;padding-top:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+article{background:#fff;border:1px solid #DDE1E6;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:12px}
+article h2{margin:0;font-size:19px;line-height:26px;font-weight:600}
+.kind{margin:0;font-size:13px;font-weight:500;color:#5B6470}
+.badge{font-size:12px;font-weight:600;border-radius:999px;padding:2px 10px}
+.ok{color:#1E5B3A;background:#E3F1E8}.past{color:#7A4A00;background:#FBEFD9}.ex{color:#4A515B;background:#ECEEF1}
+.why{background:#F0F4F8;border-radius:6px;padding:12px 14px}
+.why b{display:block;font-size:13px;color:#2F5D8A;margin-bottom:4px}
+.why p{margin:0;font-size:15px;line-height:23px}
+.src{margin:0;font-size:14px;line-height:21px;color:#5B6470}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.actions .btn,.actions button{font-size:15px;padding:0 16px}
+.upload{background:#fff;border:2px dashed #9AA7B4;border-radius:12px;padding:48px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.upload-btn{flex-direction:column;gap:12px;padding:24px 32px;border:0;background:transparent;border-radius:12px}
+.upload-btn:hover .icon-circle{background:#D9E5F1}
+.icon-circle{width:96px;height:96px;border-radius:50%;background:#E6EEF6;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.upload-btn span.lbl{font-size:18px;font-weight:600;color:#2F5D8A}
+.analyzing{background:#fff;border:1px solid #DDE1E6;border-radius:12px;padding:56px 24px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.hourglass{animation:flip 1.6s ease-in-out infinite}
+@keyframes flip{0%,40%{transform:rotate(0)}60%,100%{transform:rotate(180deg)}}
+@media (prefers-reduced-motion:reduce){.hourglass{animation:none}}
+.bar{width:min(320px,80%);height:6px;background:#E6EEF6;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:#2F5D8A;border-radius:999px;transition:width .4s}
+.cvsum{background:#E3F1E8;border-radius:8px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:15px;line-height:22px}
+.cvsum b{color:#1E5B3A}
+.note{margin:6px 0 0;font-size:15px;line-height:23px;color:#5B6470}
+.note mark{background:#FCE38A;color:#1C2128;padding:1px 4px;border-radius:3px}
+.thanks{margin:0;font-size:14px;color:#5B6470;border-top:1px solid #DDE1E6;padding-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="brand">Kompetansekompasset</p>
+<ol class="steps" id="steps" aria-label="Steg"></ol>
+</header>
+<main id="app" class="stack"></main>
+</div>
+<script>
+(function () {
+  var state = { goal: null, time: null, fmt: null, view: 'cv', off: {}, phase: 0 };
+  var goals = [
+    { id: 'fag', label: 'Faglig fordypning' }, { id: 'rolle', label: 'Ny rolle' },
+    { id: 'leder', label: 'Lederrolle' }, { id: 'verv', label: 'Tillitsverv' }, { id: 'skifte', label: 'Jobbskifte' }
+  ];
+  var times = [
+    { id: 'lunsj', label: 'Et lunsjforedrag', short: 'Lunsjforedrag' },
+    { id: 'kurs', label: 'Et kurs på 1–2 dager', short: 'Kurs, 1–2 dager' },
+    { id: 'videre', label: 'En videreutdanning', short: 'Videreutdanning' }
+  ];
+  var fmts = [
+    { id: 'dig', label: 'Digitalt', short: 'digitalt' }, { id: 'fys', label: 'Fysisk', short: 'fysisk' },
+    { id: 'begge', label: 'Spiller ingen rolle', short: 'digitalt eller fysisk' }
+  ];
+    var N = {
+      ps: { t: 'Prosjektsertifikatet', k: 'Nettkurs · 10–15 timer · når du vil', st: 'ok', src: 'NITO og Project Academy · kr 3 850 for medlemmer ut 2026', url: 'https://www.nito.no/kurs-og-aktiviteter/nettkurs/prosjektsertifikatet/' },
+      bim: { t: 'BIM for ledere', k: 'Kurs · 1 dag · fysisk, Oslo', st: 'past', src: 'NITO og Tekna · kr 5 250 for medlemmer · siste dato var 10. november 2026', url: 'https://www.nito.no/kurs-og-aktiviteter/faglige/bim-for-ledere/' },
+      verv: { t: 'Tillitsvalgt i NITO', k: 'Tillitsverv · løpende', st: 'ok', src: 'NITO · gratis opplæring for tillitsvalgte', url: 'https://www.nito.no/dette-er-nito/engasjer-deg-i-nito/' },
+      karr: { t: 'Karriereveiledning', k: 'Veiledning · format ikke oppgitt', st: 'ok', src: 'NITO · gratis for medlemmer', url: 'https://www.nito.no/en/Career-&-Development/Career-guidance/Free-career-guidance-for-NITO-members/' }
+    };
+    function ex(t) { return { t: t, k: null, st: 'ex', src: 'Eksempel. Ikke koblet til et ekte tilbud.', url: '' }; }
+    function w(base, why) { return Object.assign({}, base, { w: why }); }
+    var byGoal = {
+      fag: [
+        w(N.bim, 'CV-en viser at du har brukt BIM-modeller i flere prosjekter, men ikke som ansvarlig. Kurset handler om å bruke BIM som styringsverktøy.'),
+        w(ex('Ombruk og bærekraft i rehabilitering'), 'Flere av prosjektene dine er rehabiliteringer. Ombruk er et fagfelt som vokser nettopp i den typen prosjekter.')
+      ],
+      rolle: [
+        w(N.ps, 'Du har ledet prosjekter i mange år uten formell sertifisering. Et sertifikat gjør erfaringen lettere å dokumentere når du søker en ny rolle.'),
+        w(ex('Rollen som byggherreombud'), 'Du har jobbet tett med byggherre i mange år. Å bytte side av bordet er et vanlig neste steg for prosjektledere.')
+      ],
+      leder: [
+        w(ex('Lederutvikling for faglige ledere'), 'Du har ledet team på byggeplass uten formell lederrolle. Et slikt kurs handler om overgangen fra fagperson til leder.'),
+        w(ex('Mentorordning med en erfaren leder'), 'Passer hvis du vil prøve lederrollen før du binder deg til en lengre utdanning.')
+      ],
+      verv: [
+        w(N.verv, 'Du har forhandlet med byggherre om endringer og framdrift. Tillitsvalgte forhandler på vegne av kollegene sine, og NITO gir opplæringen.'),
+        w(ex('Styreverv i en lokal forening'), 'Du kan budsjett, framdrift og møteledelse fra prosjektene. Det er ofte det et foreningsstyre mangler.')
+      ],
+      skifte: [
+        w(N.karr, 'Prosjektledelse brukes i mange bransjer. En veileder kan hjelpe deg å se hvilke som passer, og det koster ikke noe for medlemmer.'),
+        w(ex('Prosjektledelse utenfor bygg'), 'Metoden er den samme, men begrepene er andre. Et kort kurs gjør overgangen lettere å forklare i en søknad.')
+      ]
+    };
+    var surprise = [
+      Object.assign(w(N.verv, 'CV-en viser HMS-ansvar på byggeplass og mange forhandlinger med byggherre. Som tillitsvalgt bruker du det samme, men for kollegene dine i stedet for prosjektet.'), { id: 's1' }),
+      Object.assign(w(ex('Klar kommunikasjon og formidling'), 'Mye av jobben din er å forklare tekniske ting til folk som ikke er ingeniører, i byggemøter, beboermøter og rapporter. Vi fant ikke et åpent kurs om dette hos NITO nå.'), { id: 's2', k: 'Kurs · 1 dag' }),
+      Object.assign(w(ex('Brukermedvirkning og tjenestedesign'), 'Du har ledet et skoleprosjekt der lærere og elever var med i planleggingen. Tjenestedesign er en metode for å gjøre det mer systematisk.'), { id: 's3', k: 'Lunsjforedrag' })
+    ];
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function find(list, id) { return list.filter(function (x) { return x.id === id; })[0]; }
+  function set(p) { for (var k in p) state[k] = p[k]; render(); }
+
+  function question(n, title, list, key) {
+    return '<section class="q" aria-labelledby="q' + n + '"><h2 id="q' + n + '">' + n + '. ' + esc(title) + '</h2>' +
+      '<div class="opts" role="group" aria-labelledby="q' + n + '">' +
+      list.map(function (o) {
+        return '<button type="button" class="opt" data-key="' + key + '" data-id="' + o.id + '" aria-pressed="' + (state[key] === o.id) + '">' + esc(o.label) + '</button>';
+      }).join('') + '</div></section>';
+  }
+
+  var phases = ['Leser CV-en …', 'Finner roller, prosjekter og ansvar …', 'Ser etter koblinger til kurs og verv …', 'Ferdig.'];
+  function renderCV() {
+    return '<div><h1>Start med CV-en din</h1><p class="lead">Vi leser erfaringen din, så forslagene bygger på det du faktisk har gjort.</p><p class="note">I denne prototypen lastes et eksempel inn, <mark>ingen fil sendes</mark>.</p></div>' +
+      '<section class="upload" aria-label="Last inn CV">' +
+      '<button type="button" class="upload-btn" data-act="upload">' +
+      '<span class="icon-circle" aria-hidden="true"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2F5D8A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 17v-6"/><path d="m9.5 13.5 2.5-2.5 2.5 2.5"/></svg></span>' +
+      '<span class="lbl">Last inn min CV</span></button>' +
+      '<p class="muted">PDF eller Word.</p></section>';
+  }
+  function renderAnalyzing() {
+    var pct = Math.round((state.phase + 1) / phases.length * 100);
+    return '<div><h1>Analyserer CV-en</h1><p class="lead">Dette tar bare noen sekunder.</p></div>' +
+      '<section class="analyzing" aria-live="polite">' +
+      '<svg class="hourglass" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2F5D8A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Timeglass"><path d="M6 2h12M6 22h12"/><path d="M7 2v3a5 5 0 0 0 2.5 4.3L12 11l2.5-1.7A5 5 0 0 0 17 5V2"/><path d="M7 22v-3a5 5 0 0 1 2.5-4.3L12 13l2.5 1.7A5 5 0 0 1 17 19v3"/><path d="M10 19.5h4" stroke-width="2.4"/></svg>' +
+      '<p style="margin:0;font-size:18px;font-weight:500">' + phases[state.phase] + '</p>' +
+      '<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div>' +
+      '</section>';
+  }
+  function startAnalysis() {
+    set({ view: 'analyzing', phase: 0 });
+    var i = 0;
+    var t = setInterval(function () {
+      i++;
+      if (i < phases.length) { set({ phase: i }); }
+      else { clearInterval(t); set({ view: 'q' }); }
+    }, 1100);
+  }
+
+  function renderQ() {
+    var missing = [state.goal, state.time, state.fmt].filter(function (x) { return !x; }).length;
+    var ready = missing === 0;
+    return '<div class="cvsum"><b>CV-en er analysert</b><span>Byggingeniør · prosjektleder i mange år · HMS-ansvar · brukermedvirkning i skoleprosjekt</span><span class="badge ex">Eksempel-CV</span></div>' +
+      '<div><h1>Hva vil du oppnå?</h1><p class="lead">Tre korte spørsmål. Svarene dine og CV-en avgjør hvilke tilbud vi foreslår.</p></div>' +
+      question(1, 'Hva vil du utvikle deg innen det neste året?', goals, 'goal') +
+      question(2, 'Hvor mye tid har du?', times, 'time') +
+      question(3, 'Foretrekker du digitalt eller fysisk?', fmts, 'fmt') +
+      '<div class="row"><button type="button" class="primary" data-act="goals"' + (ready ? '' : ' disabled') + '>Vis forslag</button>' +
+      '<p class="muted" aria-live="polite">' + (ready ? 'Klar.' : (missing === 1 ? 'Ett spørsmål igjen.' : missing + ' spørsmål igjen.')) + '</p></div>' +
+      '<div class="row surprise"><div style="flex:1 1 360px"><p style="margin:0 0 4px;font-weight:600">Vil du heller hoppe over spørsmålene?</p>' +
+      '<p class="muted">Da foreslår vi noe du kanskje ikke hadde tenkt på selv, men som henger sammen med erfaringen din.</p></div>' +
+      '<button type="button" class="outline" data-act="surprise">Overrask meg</button></div>';
+  }
+
+  function renderResult() {
+    var isS = state.view === 'surprise';
+    var g = find(goals, state.goal), t = find(times, state.time), f = find(fmts, state.fmt);
+    var raw = isS ? surprise : (g && t && f ? byGoal[g.id].map(function (s, i) { return Object.assign({ id: g.id + i }, s, { k: s.k || (t.short + ' · ' + f.short) }); }) : []);
+    var intro = isS
+      ? 'Dette ligger litt utenfor det CV-en din peker mot. Hvert forslag forteller hvilken kobling vi så. Bommer vi, trykk «Ikke for meg».'
+      : (g && t && f ? 'Du valgte ' + g.label.toLowerCase() + ', ' + t.short.toLowerCase() + ', ' + f.short + '.' : '');
+    var label = isS ? 'Koblingen vi så' : 'Hvorfor dette';
+    var badges = { ok: '<span class="badge ok">Sjekket 13.11.2026</span>', past: '<span class="badge past">Datoen er passert</span>', ex: '<span class="badge ex">Eksempel</span>' };
+    var cards = raw.map(function (c) {
+      var off = !!state.off[c.id];
+      return '<article><div class="row" style="gap:8px"><p class="kind">' + esc(c.k) + '</p>' + badges[c.st] + '</div>' +
+        '<h2>' + esc(c.t) + '</h2><div class="why"><b>' + label + '</b><p>' + esc(c.w) + '</p></div>' +
+        '<p class="src">' + esc(c.src) + '</p>' +
+        (off ? '<p class="thanks" role="status">Takk. Vi bruker det til å treffe bedre neste gang.</p>'
+             : '<div class="actions">' + (c.url ? '<a class="btn primary" href="' + esc(c.url) + '" target="_blank" rel="noopener">Se hos NITO</a>' : '') +
+               '<button type="button" data-off="' + c.id + '">Ikke for meg</button></div>') +
+        '</article>';
+    }).join('');
+    return '<div><h1>' + (isS ? 'Forslag utenfor det opplagte' : 'Forslag til deg') + '</h1><p class="lead">' + esc(intro) + '</p></div>' +
+      '<div class="grid">' + cards + '</div>' +
+      '<div class="row"><button type="button" data-act="back">← Tilbake til spørsmålene</button>' +
+      (isS ? '' : '<button type="button" class="outline" data-act="surprise">Overrask meg i stedet</button>') + '</div>';
+  }
+
+  var app = document.getElementById('app');
+  var stepsEl = document.getElementById('steps');
+  function render() {
+    var v = state.view;
+    var cur = (v === 'cv' || v === 'analyzing') ? 1 : (v === 'q' ? 2 : 3);
+    stepsEl.innerHTML = ['CV', 'Mål', 'Forslag'].map(function (n, i) {
+      var k = i + 1;
+      return '<li' + (k === cur ? ' class="on" aria-current="step"' : '') + '>' + k + ' · ' + n + (k < cur ? ' ✓' : '') + '</li>';
+    }).join('');
+    app.innerHTML = v === 'cv' ? renderCV() : v === 'analyzing' ? renderAnalyzing() : v === 'q' ? renderQ() : renderResult();
+  }
+
+  app.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.key) { var p = {}; p[b.dataset.key] = b.dataset.id; set(p); return; }
+    if (b.dataset.off) { state.off[b.dataset.off] = true; render(); return; }
+    var a = b.dataset.act;
+    if (a === 'upload') { startAnalysis(); return; }
+    if (a === 'goals') set({ view: 'goals', off: {} });
+    if (a === 'surprise') { set({ view: 'surprise', off: {} }); window.scrollTo(0, 0); }
+    if (a === 'back') set({ view: 'q' });
+    if (a === 'goals') window.scrollTo(0, 0);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
